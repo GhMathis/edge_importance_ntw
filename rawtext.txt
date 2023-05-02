@@ -22,6 +22,10 @@ for the appendices. Note that the appendices will come with their *own*
 bibliography (which draws from the global `references.bib` file at the
 root of the project).
 
+$$\frac{a}{b} +\frac{1}{2}$$
+
+$$J'(p) = \frac{1}{\text{log}(S)}\times\left(-\sum p \times \text{log}(p)\right)$$
+
 # The typesetting
 
 The *actual* typesetting is handled by another repository, which is
@@ -185,7 +189,7 @@ JuliaMono.
 The text can use unicode: for example, this α is written as is in the
 main text. The code can, similarly, use unicode. For example, we can use
 the one-liner neural network from the [beautiful
-algorithms]( "https://github.com/mossr/BeautifulAlgorithms.jl/blob/master/src/neural_network_one_liner.jl")
+algorithms](%22https://github.com/mossr/BeautifulAlgorithms.jl/blob/master/src/neural_network_one_liner.jl%22)
 repository:
 
 ``` julia
