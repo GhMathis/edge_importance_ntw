@@ -31,6 +31,8 @@ at the root of the project).
 
 $$\frac{a]{b} +\frac{1}{2}$$
 
+$$J'(p) = \frac{1}{\text{log}(S)}\times\left(-\sum p \times \text{log}(p)\right)$$
+
 # The typesetting
 
 The *actual* typesetting is handled by another repository, which is
