@@ -16,10 +16,16 @@ Des méthodes pour prédire les associations entre espèce commence a faire apparit
 
 ## Mat et meth
 
-Plusieur approches :  \n
-- Perturbations du résaux puis comparaison des Standard Value Décomposition + Random Graph Dot Product\n
-- Perturbations puis annalyse spectral et mesure communicabilité $$G_{pq}=\sum^n_{j=1}\varphi_j(p)\varphi_j(q)e^{\lambda_j}$$ \n
-- Stockastique graphs models - Stockastick block models - Latent block models - Approche exploratoire de backpropagation ? 
+Plusieur approches :
+- Perturbations du résaux puis comparaison des Standard Value Décomposition + Random Graph Dot Product
+
+- Perturbations puis annalyse spectral et mesure communicabilité
+
+$$G_{pq}=\sum^n_{j=1}\varphi_j(p)\varphi_j(q)e^{\lambda_j}$$
+
+- Stockastique graphs models - Stockastick block models - Latent block models 
+- Approche exploratoire de backpropagation ? 
+
 
 ## Résultats
 
