@@ -1,0 +1,70 @@
+name: Compile the document
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Build the sources
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        julia-version: [1.8]
+        typesetter-version: [0.0.17]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Julia ${{ matrix.julia-version }}
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.julia-version }}
+          arch: 'x64'      
+      - name: Get the typesetter
+        run: |
+          wget https://github.com/PoisotLab/manuscript-typesetter/archive/refs/tags/v${{ matrix.typesetter-version }}.tar.gz
+          tar -xvf v${{ matrix.typesetter-version }}.tar.gz
+          mv manuscript-typesetter-${{ matrix.typesetter-version }} .typesetter
+      - name: Julia packages
+        uses: julia-actions/julia-buildpkg@v1
+        with:
+          project: .typesetter
+      - name: Run the full project
+        run: julia --project=.typesetter .typesetter/scripts/00_build.jl
+      - name: "Word count in the build folder"
+        id: word-count
+        if: github.event_name == 'pull_request'
+        run: echo "::set-output name=count::Current word count (main text; no references) is approx. $(wc -w dist/rawtext.txt | cut -d' ' -f1)"
+      - name: "Comment on wordcount"
+        uses: thollander/actions-comment-pull-request@v1
+        if: github.event_name == 'pull_request'
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{ steps.word-count.outputs.count }}
+      - name: Save artifacts
+        if: always()
+        uses: actions/upload-artifact@master
+        with:
+          name: "dist"
+          path: dist
+  deploy:
+    name: Deploy to gh-pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download dist folder
+        uses: actions/download-artifact@v2
+        with:
+          name: "dist"
+          path: dist
+      - name: "Deploy!"
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
