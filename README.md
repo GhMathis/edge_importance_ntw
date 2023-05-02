@@ -29,7 +29,7 @@ for the appendices. Note that the appendices will come with their
 *own* bibliography (which draws from the global `references.bib` file
 at the root of the project).
 
-$$\frac{a]{b}$$
+$$\frac{a]{b} +\frac{1}{2}$$
 
 # The typesetting
 
