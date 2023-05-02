@@ -30,6 +30,7 @@ for the appendices. Note that the appendices will come with their
 at the root of the project).
 
 $$\frac{a}{b} +\frac{1}{2}$$
+$$ \frac{1}{\text{log}(S)}\times\left(-\sum p \times \text{log}(p)\right)$$
 
 $$J'(p) = \frac{1}{\text{log}(S)}\times\left(-\sum p \times \text{log}(p)\right)$$
 
