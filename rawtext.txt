@@ -36,6 +36,8 @@ $$G_{pq}=\sum^n_{j=1}\varphi_j(p)\varphi_j(q)e^{\lambda_j}$$
 
 ## Résultats
 
+@poisotNetworkEmbeddingUnveils2022
+
 ## Disscution
 
 ## Conclusion
