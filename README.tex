@@ -74,21 +74,53 @@ structurantes.}\label{resaux-dinteractions-huxf4tes-virus-quantification-de-limp
 \hypertarget{introduction}{%
 \subsection{Introduction}\label{introduction}}
 
-La prédiction d'interaction potentiel entre hôte virus -\textgreater{}
-chellenge important
+La prédiction d'interaction potentiel entre hôte virus \(\rightarrow\)
+challenge important
 
 Prédire des interaction entre espèces = difficile
 
-Grosse quantité de data, beaucoup de biais, beaucoup de
+Grosse quantité de données mais pas standardisée + beaucoup de biais
 
-\hypertarget{math-et-meth}{%
-\subsection{Math et meth}\label{math-et-meth}}
+Besoin de méthodes qui prennent en compte ce contrainte
+
+Différentes approches : - a partir des traits (plus facile pour
+généraliser) - a partir des réseaux interactions
+
+Des méthodes pour prédire les associations entre espèce commence a faire
+apparition Besoin de s'assurer que ces méthodes ne prédisent pas
+seulement les interactions fortement structurante du réseaux d'une part
+Besoin de connaitre quelle interaction sont structurantes et lesquelles
+le sont moins afin d'orienter les études Peut potentiellement amélioré
+la prédiction d'interaction graçe a une meilleur connaissance des résaux
+
+\hypertarget{mat-et-meth}{%
+\subsection{Mat et meth}\label{mat-et-meth}}
+
+Plusieur approches : - Perturbations du résaux puis comparaison des
+Standard Value Décomposition + Random Graph Dot Product
+
+\begin{itemize}
+\tightlist
+\item
+  Perturbations puis annalyse spectral et mesure communicabilité
+\end{itemize}
+
+\[G_{pq}=\sum^n_{j=1}\varphi_j(p)\varphi_j(q)e^{\lambda_j}\]
+
+\begin{itemize}
+\tightlist
+\item
+  Stockastique graphs models - Stockastick block models - Latent block
+  models
+\item
+  Approche exploratoire de backpropagation ?
+\end{itemize}
 
 \hypertarget{ruxe9sultats}{%
 \subsection{Résultats}\label{ruxe9sultats}}
 
-\hypertarget{disscussion}{%
-\subsection{Disscussion}\label{disscussion}}
+\hypertarget{disscution}{%
+\subsection{Disscution}\label{disscution}}
 
 \hypertarget{conclusion}{%
 \subsection{Conclusion}\label{conclusion}}
