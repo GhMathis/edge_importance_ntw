@@ -1,6 +1,18 @@
 {
-    "title": "Template to prepare preprints and manuscripts using markdown and github actions",
+    "title": "Uncover viral sharing through global srtucure of host-virus meta-network",
     "authors": [
+      {
+            "affiliations": [
+                "Univeristé de Rennes",
+                "Université de Montréal"
+            ],
+            "familyname": "Gheno",
+            "givennames": "Mathis",
+            "email": "mathisgheno@gmail.com",
+            "status": [
+                "equal"
+            ]
+        },
         {
             "affiliations": [
                 "Université de Montréal",
@@ -14,28 +26,8 @@
                 "corresponding",
                 "equal"
             ]
-        },
-        {
-            "affiliations": [
-                "Inn of the Prancing Pony",
-                "Fellowship of the Ring"
-            ],
-            "familyname": "Took",
-            "givennames": "Peregrin",
-            "email": "pippin@took.shire"
-        },
-        {
-            "affiliations": [
-                "Green Dragon Inn",
-                "Fellowship of the Ring"
-            ],
-            "familyname": "Brandybuck",
-            "givennames": "Merriadoc",
-            "email": "merry@fellowship.ring",
-            "status": [
-                "equal"
-            ]
         }
+        
     ],
     "abstract": {
         "Purpose": "This template provides a series of scripts to render a markdown document into an interactive website and a series of PDFs.",
