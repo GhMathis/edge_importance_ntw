@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Template to prepare preprints and manuscripts using markdown
-and github actions</title>
+    <title>Uncover viral sharing through global srtucure of host-virus
+meta-network</title>
     <script src="https://hypothes.is/embed.js" async></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
@@ -239,20 +239,17 @@ and github actions</title>
 <body>
     <header>
         <div class="container">
-            <div class="header--title">Template to prepare preprints and
-manuscripts using markdown and github actions</div>
+            <div class="header--title">Uncover viral sharing through
+global srtucure of host-virus meta-network</div>
             <div class="header--authors">
                 <span class="header--author">
+                Mathis Gheno
+                <sup class="affiliation">1,2,‡</sup>
+                </span><span class="header--author">
                 <a href="https://orcid.org/0000-0002-0735-5184" target="_blank">
                     Timothée Poisot
                 </a>
-                <sup class="affiliation">1,2,‡</sup>
-                </span><span class="header--author">
-                Peregrin Took
-                <sup class="affiliation">3,4</sup>
-                </span><span class="header--author">
-                Merriadoc Brandybuck
-                <sup class="affiliation">4,5,‡</sup>
+                <sup class="affiliation">2,3,‡</sup>
                 </span>
             </div>
         </div>
@@ -276,68 +273,143 @@ manuscripts using markdown and github actions</div>
                 </dl>
 
             <div class="artifacts">
-                <a href="Poisot_et_al_2023_template_prepare_draft.pdf" title="Draft" target="_blank">Draft</a>
-                <a href="Poisot_et_al_2023_template_prepare_preprint.pdf" title="Preprint" target="_blank">Preprint</a>
-                <a href="Poisot_et_al_2023_template_prepare.odt" title="OpenDocument" target="_blank">Libre Office</a>
+                <a href="Gheno_and_Poisot_2023_uncover_viral_draft.pdf" title="Draft" target="_blank">Draft</a>
+                <a href="Gheno_and_Poisot_2023_uncover_viral_preprint.pdf" title="Preprint" target="_blank">Preprint</a>
+                <a href="Gheno_and_Poisot_2023_uncover_viral.odt" title="OpenDocument" target="_blank">Libre Office</a>
             </div>
         </section>
 
         <article>
-            <h1
-            id="resaux-dinteractions-hôtes-virus-quantification-de-limportance-des-association-et-identification-des-interactions-structurantes.">Resaux
-            d’interactions Hôtes-Virus : Quantification de l’importance
-            des association, et identification des interactions
-            structurantes.</h1>
             <h2 id="introduction">Introduction</h2>
-            <p>La prédiction d’interaction potentiel entre hôte virus
-            <span class="math inline">→</span> challenge important</p>
-            <p>Prédire des interaction entre espèces = difficile</p>
-            <p>Grosse quantité de données mais pas standardisée +
-            beaucoup de biais</p>
-            <p>Besoin de méthodes qui prennent en compte ce
-            contrainte</p>
-            <p>Différentes approches : - a partir des traits (plus
-            facile pour généraliser) - a partir des réseaux
-            interactions</p>
-            <p>Des méthodes pour prédire les associations entre espèce
-            commence a faire apparition Besoin de s’assurer que ces
-            méthodes ne prédisent pas seulement les interactions
-            fortement structurante du réseaux d’une part Besoin de
-            connaitre quelle interaction sont structurantes et
-            lesquelles le sont moins afin d’orienter les études Peut
-            potentiellement amélioré la prédiction d’interaction graçe a
-            une meilleur connaissance des résaux</p>
-            <h2 id="mat-et-meth">Mat et meth</h2>
-            <p>Plusieur approches : - Perturbations du résaux puis
-            comparaison des Standard Value Décomposition + Random Graph
-            Dot Product</p>
-            <ul>
-            <li>Perturbations puis annalyse spectral et mesure
-            communicabilité</li>
-            </ul>
+            <h2 id="methods">Methods</h2>
+            <p>Communicability quantify how well information transit
+            between two nodes by considering all possible path in a
+            network and penalizing longer ones. It is compute with the
+            exponent of the adjacency matrix of the network.<span
+            class="math display">$$G=\sum_{k=0}^{\infty}
+            \frac{\left(\mathbf{A}^k\right)}{k
+            !}=e^{\mathbf{A}}$$</span></p>
+            <p>where <span class="math inline"><em>G</em></span> is the
+            communicability matrix, <span
+            class="math inline"><em>A</em></span> the adjacency matrix
+            and k is used as a penalizing term. It is possible to
+            compute the exponential of a matrix with the graph spectrum
+            :</p>
+            <p><span class="math display">$$
+            G=\sum^n_{j=1}\varphi_j\varphi_j^T e^{\lambda_j}
+            $$</span></p>
+            <p>where <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub></span>
+            and <span
+            class="math inline"><em>λ</em><sub><em>j</em></sub></span>
+            are respectively the <span
+            class="math inline"><em>j</em><sup><em>t</em><em>h</em></sup></span>
+            eigenvectors and eigenvalues of the matrix <span
+            class="math inline"><em>A</em></span>. The spectral form of
+            <span class="math inline"><em>G</em></span> can be decompose
+            by the following way :</p>
+            <p><span id="eq:cluster1"><span class="math display">$$
+            G=\varphi_1\varphi_1^{T} e^{\lambda_1}+
+            \sum^n_{j=2}\varphi_j^{+}\varphi_j^{+T} e^{\lambda_j}+
+            \sum^n_{j=2}\varphi_j^{-}\varphi_j^{-T} e^{\lambda_j}+
+            \sum^n_{j=2}\varphi_j^{-}\varphi_j^{+T} e^{\lambda_j}
+            \qquad{(1)}$$</span></span></p>
+            <p><br />
+            <br />
+            </p>
+            <p>where <span
+            class="math inline"><em>φ</em><sup>+</sup></span> or <span
+            class="math inline"><em>φ</em><sup>−</sup></span> indicate
+            respectively all the positives or negatives values of the
+            <span
+            class="math inline"><em>j</em><sup><em>t</em><em>h</em></sup></span>
+            eigenvector. The first is not include because all the values
+            the eigenvector the same sign. <span class="citation"
+            data-cites="Estrada2008Communicability">Estrada &amp; Hatano
+            (<a href="#ref-Estrada2008Communicability"
+            role="doc-biblioref">2008</a>)</span> explain that “two
+            nodes have the same sign in an eigenvector if they can be
+            considered as being in the same partition of the network,
+            while those pairs having different signs correspond to nodes
+            in different partitions.” So to make partition we are mostly
+            interested by the sign of the sums in eq. 1 : <span
+            class="math display">$$\sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T}
+            e^{\lambda_j} = \sum^n_{j=2}\varphi_j^{+}\varphi_j^{+T}
+            e^{\lambda_j}+ \sum^n_{j=2}\varphi_j^{-}\varphi_j^{-T}
+            e^{\lambda_j}$$</span></p>
+            <p>and</p>
             <p><span
-            class="math display">$$G_{pq}=\sum^n_{j=1}\varphi_j(p)\varphi_j(q)e^{\lambda_j}$$</span></p>
-            <ul>
-            <li>Stockastique graphs models - Stockastick block models -
-            Latent block models</li>
-            <li>Approche exploratoire de backpropagation ?</li>
-            </ul>
-            <h2 id="résultats">Résultats</h2>
-            <p><span class="citation"
-            data-cites="poisotNetworkEmbeddingUnveils2022">Poisot <em>et
-            al.</em> (2022)</span></p>
-            <h2 id="disscution">Disscution</h2>
+            class="math display">$$\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T}
+            e^{\lambda_j} = \sum^n_{j=2}\varphi_j^{-}\varphi_j^{+T}
+            e^{\lambda_j}$$</span></p>
+            <p>so the clustering matrix is obtain with</p>
+            <p><span class="math display">$$\Delta G =
+            \sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T}
+            e^{\lambda_j} -
+            \left|\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T}
+            e^{\lambda_j}\right|
+            $$</span></p>
+            <h4 id="example">Example</h4>
+            <pre class="{r}"><code>library(tidyverse)
+library(lattice)
+library(igraph)
+library(colorRamps)
+A  = matrix(c(0,1,0,1,1,0,0,0,0,0,0,
+              1,0,1,1,1,0,0,0,0,0,0,
+              0,1,0,1,1,0,0,0,0,0,0,
+              1,1,1,0,1,0,0,0,0,0,0,
+              1,1,1,1,0,1,0,0,0,0,0,
+              0,0,0,0,1,0,1,0,0,0,0,
+              0,0,0,0,0,1,0,1,1,0,1,
+              0,0,0,0,0,0,1,0,1,1,1,
+              0,0,0,0,0,0,1,1,0,1,1,
+              0,0,0,0,0,0,0,1,1,0,1,
+              0,0,0,0,0,0,1,1,1,1,0), nrow =11, ncol =11)
+grap = graph_from_adjacency_matrix(A, mode = &quot;undirected&quot;)
+plot(grap)</code></pre>
+            <p>A graph with 11 nodes and 2 distinct group. First we need
+            to compute the graph spectrum</p>
+            <pre class="{r}"><code>spectra = eigen(A)
+levelplot(spectra$vectors, ylab = &quot;eigenvectors&quot;, xlab =&quot;j th position&quot;)</code></pre>
+            <p>Now let’s take the <span
+            class="math inline">2<sup><em>n</em><em>d</em></sup></span>
+            dimension as an example.</p>
+            <pre class="{r}"><code>##
+G_dim2 = spectra$vectors[,2]%*%t(spectra$vectors[,2])*exp(spectra$values[2])
+intra = G_dim2[G_dim2]
+levelplot(G_dim2, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
+            <p>And that it ! The second dimension of the graph
+            communicability identify 2 cluster (blue).</p>
+            <p>We can compute for the third dimention</p>
+            <pre class="{r}"><code>G_dim3 = spectra$vectors[,3]%*%t(spectra$vectors[,3])*exp(spectra$values[3])
+levelplot(G_dim3, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
+            <p>Which identify clusters between 5:6 and 6:7. The cluster
+            of the third dimension are less “obvious” than those from
+            the second dimension</p>
+            <p>Now if we want to use other communicability dimension we
+            just have to add</p>
+            <pre class="{r}"><code>levelplot(G_dim2+G_dim3, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
+            <p>We could continue like that till the last dimension
+            (11th), but it was for the explanation. So now we can
+            compute directly <span
+            class="math inline"><em>Δ</em><em>G</em></span> by adding
+            all the 10 dimension</p>
+            <pre class="{r}"><code>delta_G = matrix(0, nrow =11, ncol =11)
+for(dim in 2:11){
+  delta_G = delta_G + spectra$vectors[,dim]%*%t(spectra$vectors[,dim])*exp(spectra$values[dim])
+}
+levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
+            <h2 id="results">Results</h2>
             <h2 class="unnumbered" id="conclusion">Conclusion</h2>
             <div id="refs"
             class="references csl-bib-body hanging-indent"
             role="doc-bibliography">
-            <div id="ref-poisotNetworkEmbeddingUnveils2022"
-            class="csl-entry" role="doc-biblioentry">
-            Poisot, T., Ouellet, M.-A., Mollentze, N., Farrell, M.J.,
-            Becker, D.J., Brierly, L., <em>et al.</em> (2022). <a
-            href="https://doi.org/10.48550/arXiv.2105.14973">Network
-            embedding unveils the hidden interactions in the mammalian
-            virome</a>.
+            <div id="ref-Estrada2008Communicability" class="csl-entry"
+            role="doc-biblioentry">
+            Estrada, E. &amp; Hatano, N. (2008). <a
+            href="https://doi.org/10.1103/PhysRevE.77.036111">Communicability
+            in complex networks</a>. <em>Physical Review E</em>, 77,
+            036111.
             </div>
             </div>
         </article>
@@ -347,22 +419,21 @@ manuscripts using markdown and github actions</div>
                 <div class="container">
             <h2>Supplementary Material</h2>
             <span class="appendix--list">
-                <a href="appendix/Poisot_et_al_2023_template_prepare_s1.pdf" target="_blank">
+                <a href="appendix/Gheno_and_Poisot_2023_uncover_viral_s1.pdf" target="_blank">
                     <b>1:</b>&nbsp;The metadata configuration file
                 </a><br />
             </span><span class="appendix--list">
-                <a href="appendix/Poisot_et_al_2023_template_prepare_s2.pdf" target="_blank">
+                <a href="appendix/Gheno_and_Poisot_2023_uncover_viral_s2.pdf" target="_blank">
                     <b>2:</b>&nbsp;Bibliography in supp. mat.
                 </a><br />
             </span>
         </div>
                 <div class="container">
             <h2>Affiliations</h2>
-            <sup>1</sup>&nbsp;Université de
-            Montréal; <sup>2</sup>&nbsp;Québec Centre for Biodiversity
-            Sciences; <sup>3</sup>&nbsp;Inn of the Prancing
-            Pony; <sup>4</sup>&nbsp;Fellowship of the
-            Ring; <sup>5</sup>&nbsp;Green Dragon Inn
+            <sup>1</sup>&nbsp;Univeristé de
+            Rennes; <sup>2</sup>&nbsp;Université de
+            Montréal; <sup>3</sup>&nbsp;Québec Centre for Biodiversity
+            Sciences
             <br />
             
         </div>
