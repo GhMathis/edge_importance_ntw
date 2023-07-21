@@ -349,6 +349,9 @@ global srtucure of host-virus meta-network</div>
             \left|\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T}
             e^{\lambda_j}\right|
             $$</span></p>
+            <p>in short it is in fact</p>
+            <p><span
+            class="math display"><em>Δ</em><em>G</em> = <em>G</em> − <em>φ</em><sub>1</sub><em>φ</em><sub>1</sub><sup><em>T</em></sup><em>e</em><sup><em>λ</em><sub>1</sub></sup></span></p>
             <h4 id="example">Example</h4>
             <pre class="{r}"><code>library(tidyverse)
 library(lattice)
@@ -400,6 +403,7 @@ for(dim in 2:11){
 }
 levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
             <h2 id="results">Results</h2>
+            <pre><code>![Globlal matrix of clustering communicability. Positive values inticate that species are in the same cluster. Only host order and virus order names are display.](figures/host_virus_cluster.jpg){#fig:global}</code></pre>
             <h2 class="unnumbered" id="conclusion">Conclusion</h2>
             <div id="refs"
             class="references csl-bib-body hanging-indent"
