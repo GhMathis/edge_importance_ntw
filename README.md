@@ -42,6 +42,13 @@ $$\Delta G = \sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j} -
 \left|\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j}\right|
 $$
 
+in short it is in fact
+
+$$
+\Delta G = 
+G - \varphi_{1} \varphi_{1}^T e^{\lambda_1}
+$$
+
 #### Example
 
 ```{r}
@@ -108,5 +115,9 @@ levelplot(delta_G, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)
 ```
 
 ## Results
+
+```         
+![Globlal matrix of clustering communicability. Positive values inticate that species are in the same cluster. Only host order and virus order names are display.](figures/host_virus_cluster.jpg){#fig:global}
+```
 
 ## Conclusion
