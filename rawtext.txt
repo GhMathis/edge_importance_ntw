@@ -191,4 +191,7 @@ fig. 1](figures/host_virus__rand_cluster.jpg){#fig:host_virus__rand_cluster}
 ![Figure 9: Figure 9 : comparison with Albery sharing
 metric.](figures/sharing_vs_clustering.jpg){#fig:sharing_vs_clustering}
 
+![Figure 10 : comparison with Albery sharing metric for a random
+network](figures/sharing_vs_clustering_rand.jpg)
+
 ## Conclusion
