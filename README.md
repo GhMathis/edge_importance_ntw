@@ -18,7 +18,15 @@ $$
 G=\sum^n_{j=1}\varphi_j\varphi_j^T e^{\lambda_j}
 $$
 
-where $\varphi_j$ and $\lambda_j$ are respectively the $j^{th}$ eigenvectors and eigenvalues of the matrix $A$. The spectral form of $G$ can be decompose by the following way :
+where $\varphi_j$ and $\lambda_j$ are respectively the $j^{th}$ eigenvectors and eigenvalues of the matrix $A$. Obtain cluster with Communicability is done only by removing the fist dimension in the computation of the previous equation.
+
+$$
+\Delta G=\sum^n_{j=1}\varphi_j\varphi_j^T e^{\lambda_j} -\varphi_1\varphi_1^{T} e^{\lambda_1}
+$$
+
+In this equation we are removing to global sum the dot production of the first eigenvector(and eigenvalue) to find the clustering matrix $\Delta G$. Let's keep in mind this final result and explain why this work for clustering.
+
+We start with the spectral form of $G$ that can be decompose by the following way :
 
 $$
 G=\varphi_1\varphi_1^{T} e^{\lambda_1}+ 
@@ -30,7 +38,7 @@ $${#eq:cluster1}
 \
 \
 
-where $\varphi^+$ or $\varphi^-$ indicate respectively all the positives or negatives values of the $j^{th}$ eigenvector. The first is not include because all the values the eigenvector the same sign. @Estrada2008Communicability explain that "two nodes have the same sign in an eigenvector if they can be considered as being in the same partition of the network, while those pairs having different signs correspond to nodes in different partitions." So to make partition we are mostly interested by the sign of the sums in @eq:cluster1 : $$\sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j} = \sum^n_{j=2}\varphi_j^{+}\varphi_j^{+T} e^{\lambda_j}+ \sum^n_{j=2}\varphi_j^{-}\varphi_j^{-T} e^{\lambda_j}$$
+where $\varphi_j^+$ or $\varphi_j^-$ indicate respectively all the positives or negatives values of the $j^{th}$ eigenvector. A way to think about it would be that when $\varphi_j^+$ all negative values are set to 0 and when when $\varphi_j^-$ all positive values are set to 0. @Estrada2008Communicability explain that "two nodes have the same sign in an eigenvector if they can be considered as being in the same partition of the network, while those pairs having different signs correspond to nodes in different partitions.". $$\sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j} = \sum^n_{j=2}\varphi_j^{+}\varphi_j^{+T} e^{\lambda_j}+ \sum^n_{j=2}\varphi_j^{-}\varphi_j^{-T} e^{\lambda_j}$$
 
 and
 
@@ -39,16 +47,19 @@ $$\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j} = \sum^n_{j=2}\v
 so the clustering matrix is obtain with
 
 $$\Delta G = \sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j} -
-\left|\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j}\right|
-$$
+\left|\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j}\right|$$
 
-in short it is in fact
+The absolute operator is not useful, it is just here to remind that all inter cluster values are negatives. The dot product of $\varphi_j\varphi_j^{T}$ produce a matrix with positive and negative sign depending on the sign of $\varphi_j(p)$ and $\varphi_j(q)$. The first is not include because all the values the eigenvector the same sign, so it is not really informative (In fact it consider the hole network as one cluster thus it does not bring interesting information on the clustering).
 
-$$
-\Delta G = 
-G - \varphi_{1} \varphi_{1}^T e^{\lambda_1}
-$$
+In short we can rewrite $\Delta G$ as follow :
 
+$$\Delta G = 
+G - \varphi_{1} \varphi_{1}^T e^{\lambda_1}$$
+
+which was the form in which we introduce it.
+
+##### Remark
+Each dimension of the spectra form the 2nd to the last one is a clustering configuration of the network. Cluster identified by dim 3 are not necessarily independent form those in dim 2 or 4 (or all others). Althoug the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and so on till the last one. So the dim 2 is the one that contibute the most for $\Delta G$ (we can see it in the following exemple).
 #### Example
 
 ```{r}
@@ -71,25 +82,30 @@ grap = graph_from_adjacency_matrix(A, mode = "undirected")
 plot(grap)
 ```
 
+
 A graph with 11 nodes and 2 distinct group. First we need to compute the graph spectrum
+
 
 ```{r}
 spectra = eigen(A)
-levelplot(spectra$vectors, ylab = "eigenvectors", xlab ="j th position")
+levelplot(spectra$vectors, ylab ="j th position" , xlab ="eigenvectors")
 ```
+
+
+The above plot just represent the 11 eigenvectors. We can see that the fisrt one is the only full of same sign value.
 
 Now let's take the $2^{nd}$ dimension as an example.
 
 ```{r}
 ##
 G_dim2 = spectra$vectors[,2]%*%t(spectra$vectors[,2])*exp(spectra$values[2])
-intra = G_dim2[G_dim2]
 levelplot(G_dim2, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)))
 ```
 
-And that it ! The second dimension of the graph communicability identify 2 cluster (blue).
 
-We can compute for the third dimention
+And that it ! The second dimension of the graph communicability identify 2 cluster (in blue).
+
+We can compute for the third dimension
 
 ```{r}
 G_dim3 = spectra$vectors[,3]%*%t(spectra$vectors[,3])*exp(spectra$values[3])
@@ -98,13 +114,13 @@ levelplot(G_dim3, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16))
 
 Which identify clusters between 5:6 and 6:7. The cluster of the third dimension are less "obvious" than those from the second dimension
 
-Now if we want to use other communicability dimension we just have to add
+Now if we want to use both dimension in the clustering, we just have to add
 
 ```{r}
 levelplot(G_dim2+G_dim3, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)))
 ```
 
-We could continue like that till the last dimension (11th), but it was for the explanation. So now we can compute directly $\Delta G$ by adding all the 10 dimension
+We could continue like that till the last dimension (11th), but it was for the explanation. So now we can compute directly $\Delta G$ by adding dimension from 2 to 11 (or subtraction of the first dim which is exactly the same)
 
 ```{r}
 delta_G = matrix(0, nrow =11, ncol =11)
@@ -118,16 +134,20 @@ levelplot(delta_G, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)
 
 ![Figure 1 : Global matrix of clustering communicability. Positive values indicate species in same cluster, negative value species in "opposite" cluster. Only host order and virus order names are display on x and y.](figures/host_virus_cluster.jpg){#fig:global}
 
-![Figure 2](figures/host_host_cluster.jpg){#fig:host}
+![Figure 2 : Host-Host cluster matrix](figures/host_host_cluster.jpg){#fig:host}
 
-![Figure 3](figures/host_host_recap.jpg){#fig:host_recap}
+![Figure 3 : Host Host recap (with median of clustering value for each order)](figures/host_host_recap.jpg){#fig:host_recap}
 
-![Figure 4](figures/virus_virus_cluster.jpg){#fig:virus}
+![Figure 4 : Virus-Virus cluster matrix](figures/virus_virus_cluster.jpg){#fig:virus}
 
-![Figure 5](figures/virus_virus_recap.jpg){#fig:virus_recap}
+![Figure 5 : Virus-Virus recap (with median of cluster value for each order)](figures/virus_virus_recap.jpg){#fig:virus_recap}
 
-![Figure 4](figures/host_virus.jpg){#fig:host_virus}
+![Figure 6 : Host-Virus cluster matrix](figures/host_virus.jpg){#fig:host_virus}
 
-![Figure 5](figures/host_virus_recap.jpg){#fig:host_virus_recap}
+![Figure 7 : Host-Virus recap (with median of cluster value for each order)](figures/host_virus_recap.jpg){#fig:host_virus_recap}
+
+![Figure 8 : Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as fig. 1](figures/host_virus__rand_cluster.jpg){#fig:host_virus__rand_cluster}
+
+![Figure 9 : comparison with Albery sharing metric.](figures/sharing_vs_clustering.jpg){#fig:sharing_vs_clustering}
 
 ## Conclusion
