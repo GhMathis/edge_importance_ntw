@@ -59,8 +59,8 @@ G - \varphi_{1} \varphi_{1}^T e^{\lambda_1}$$
 which was the form in which we introduce it.
 
 ##### Remark
-Each dimension of the spectra form the 2nd to the last one is a clustering configuration of the network. Cluster identified by dim 3 are not necessarily independent form those in dim 2 or 4 (or all others). Althoug the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and so on till the last one. So the dim 2 is the one that contibute the most for $\Delta G$ (we can see it in the following exemple).
-#### Example
+
+Each dimension of the spectra form the 2nd to the last one is a clustering configuration of the network. Cluster identified by dim 3 are not necessarily independent form those in dim 2 or 4 (or all others). Althoug the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and so on till the last one. So the dim 2 is the one that contibute the most for $\Delta G$ (we can see it in the following exemple). \#### Example
 
 ```{r}
 library(tidyverse)
@@ -82,15 +82,12 @@ grap = graph_from_adjacency_matrix(A, mode = "undirected")
 plot(grap)
 ```
 
-
 A graph with 11 nodes and 2 distinct group. First we need to compute the graph spectrum
-
 
 ```{r}
 spectra = eigen(A)
 levelplot(spectra$vectors, ylab ="j th position" , xlab ="eigenvectors")
 ```
-
 
 The above plot just represent the 11 eigenvectors. We can see that the fisrt one is the only full of same sign value.
 
@@ -101,7 +98,6 @@ Now let's take the $2^{nd}$ dimension as an example.
 G_dim2 = spectra$vectors[,2]%*%t(spectra$vectors[,2])*exp(spectra$values[2])
 levelplot(G_dim2, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)))
 ```
-
 
 And that it ! The second dimension of the graph communicability identify 2 cluster (in blue).
 
@@ -149,5 +145,7 @@ levelplot(delta_G, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)
 ![Figure 8 : Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as fig. 1](figures/host_virus__rand_cluster.jpg){#fig:host_virus__rand_cluster}
 
 ![Figure 9 : comparison with Albery sharing metric.](figures/sharing_vs_clustering.jpg){#fig:sharing_vs_clustering}
+
+![Figure 10 : comparison with Albery sharing metric for a random network](figures/sharing_vs_clustering_rand.jpg)
 
 ## Conclusion
