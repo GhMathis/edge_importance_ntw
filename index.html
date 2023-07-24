@@ -305,8 +305,21 @@ global srtucure of host-virus meta-network</div>
             are respectively the <span
             class="math inline"><em>j</em><sup><em>t</em><em>h</em></sup></span>
             eigenvectors and eigenvalues of the matrix <span
-            class="math inline"><em>A</em></span>. The spectral form of
-            <span class="math inline"><em>G</em></span> can be decompose
+            class="math inline"><em>A</em></span>. Obtain cluster with
+            Communicability is done only by removing the fist dimension
+            in the computation of the previous equation.</p>
+            <p><span class="math display">$$
+            \Delta G=\sum^n_{j=1}\varphi_j\varphi_j^T e^{\lambda_j}
+            -\varphi_1\varphi_1^{T} e^{\lambda_1}
+            $$</span></p>
+            <p>In this equation we are removing to global sum the dot
+            production of the first eigenvector(and eigenvalue) to find
+            the clustering matrix <span
+            class="math inline"><em>Δ</em><em>G</em></span>. Let’s keep
+            in mind this final result and explain why this work for
+            clustering.</p>
+            <p>We start with the spectral form of <span
+            class="math inline"><em>G</em></span> that can be decompose
             by the following way :</p>
             <p><span id="eq:cluster1"><span class="math display">$$
             G=\varphi_1\varphi_1^{T} e^{\lambda_1}+
@@ -318,21 +331,25 @@ global srtucure of host-virus meta-network</div>
             <br />
             </p>
             <p>where <span
-            class="math inline"><em>φ</em><sup>+</sup></span> or <span
-            class="math inline"><em>φ</em><sup>−</sup></span> indicate
-            respectively all the positives or negatives values of the
-            <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub><sup>+</sup></span>
+            or <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub><sup>−</sup></span>
+            indicate respectively all the positives or negatives values
+            of the <span
             class="math inline"><em>j</em><sup><em>t</em><em>h</em></sup></span>
-            eigenvector. The first is not include because all the values
-            the eigenvector the same sign. <span class="citation"
+            eigenvector. A way to think about it would be that when
+            <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub><sup>+</sup></span>
+            all negative values are set to 0 and when when <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub><sup>−</sup></span>
+            all positive values are set to 0. <span class="citation"
             data-cites="Estrada2008Communicability">Estrada &amp; Hatano
             (<a href="#ref-Estrada2008Communicability"
             role="doc-biblioref">2008</a>)</span> explain that “two
             nodes have the same sign in an eigenvector if they can be
             considered as being in the same partition of the network,
             while those pairs having different signs correspond to nodes
-            in different partitions.” So to make partition we are mostly
-            interested by the sign of the sums in eq. 1 : <span
+            in different partitions.”. <span
             class="math display">$$\sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T}
             e^{\lambda_j} = \sum^n_{j=2}\varphi_j^{+}\varphi_j^{+T}
             e^{\lambda_j}+ \sum^n_{j=2}\varphi_j^{-}\varphi_j^{-T}
@@ -347,12 +364,37 @@ global srtucure of host-virus meta-network</div>
             \sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T}
             e^{\lambda_j} -
             \left|\sum^{intercluster}_{j=2}\varphi_j\varphi_j^{T}
-            e^{\lambda_j}\right|
-            $$</span></p>
-            <p>in short it is in fact</p>
+            e^{\lambda_j}\right|$$</span></p>
+            <p>The absolute operator is not useful, it is just here to
+            remind that all inter cluster values are negatives. The dot
+            product of <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub><em>φ</em><sub><em>j</em></sub><sup><em>T</em></sup></span>
+            produce a matrix with positive and negative sign depending
+            on the sign of <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub>(<em>p</em>)</span>
+            and <span
+            class="math inline"><em>φ</em><sub><em>j</em></sub>(<em>q</em>)</span>.
+            The first is not include because all the values the
+            eigenvector the same sign, so it is not really informative
+            (In fact it consider the hole network as one cluster thus it
+            does not bring interesting information on the
+            clustering).</p>
+            <p>In short we can rewrite <span
+            class="math inline"><em>Δ</em><em>G</em></span> as follow
+            :</p>
             <p><span
             class="math display"><em>Δ</em><em>G</em> = <em>G</em> − <em>φ</em><sub>1</sub><em>φ</em><sub>1</sub><sup><em>T</em></sup><em>e</em><sup><em>λ</em><sub>1</sub></sup></span></p>
-            <h4 id="example">Example</h4>
+            <p>which was the form in which we introduce it.</p>
+            <h5 id="remark">Remark</h5>
+            <p>Each dimension of the spectra form the 2nd to the last
+            one is a clustering configuration of the network. Cluster
+            identified by dim 3 are not necessarily independent form
+            those in dim 2 or 4 (or all others). Althoug the cluster
+            form by dim 2 are “stronger” then 3, 4, 5 … and so on till
+            the last one. So the dim 2 is the one that contibute the
+            most for <span
+            class="math inline"><em>Δ</em><em>G</em></span> (we can see
+            it in the following exemple). #### Example</p>
             <pre class="{r}"><code>library(tidyverse)
 library(lattice)
 library(igraph)
@@ -373,30 +415,33 @@ plot(grap)</code></pre>
             <p>A graph with 11 nodes and 2 distinct group. First we need
             to compute the graph spectrum</p>
             <pre class="{r}"><code>spectra = eigen(A)
-levelplot(spectra$vectors, ylab = &quot;eigenvectors&quot;, xlab =&quot;j th position&quot;)</code></pre>
+levelplot(spectra$vectors, ylab =&quot;j th position&quot; , xlab =&quot;eigenvectors&quot;)</code></pre>
+            <p>The above plot just represent the 11 eigenvectors. We can
+            see that the fisrt one is the only full of same sign
+            value.</p>
             <p>Now let’s take the <span
             class="math inline">2<sup><em>n</em><em>d</em></sup></span>
             dimension as an example.</p>
             <pre class="{r}"><code>##
 G_dim2 = spectra$vectors[,2]%*%t(spectra$vectors[,2])*exp(spectra$values[2])
-intra = G_dim2[G_dim2]
 levelplot(G_dim2, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
             <p>And that it ! The second dimension of the graph
-            communicability identify 2 cluster (blue).</p>
-            <p>We can compute for the third dimention</p>
+            communicability identify 2 cluster (in blue).</p>
+            <p>We can compute for the third dimension</p>
             <pre class="{r}"><code>G_dim3 = spectra$vectors[,3]%*%t(spectra$vectors[,3])*exp(spectra$values[3])
 levelplot(G_dim3, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
             <p>Which identify clusters between 5:6 and 6:7. The cluster
             of the third dimension are less “obvious” than those from
             the second dimension</p>
-            <p>Now if we want to use other communicability dimension we
-            just have to add</p>
+            <p>Now if we want to use both dimension in the clustering,
+            we just have to add</p>
             <pre class="{r}"><code>levelplot(G_dim2+G_dim3, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions = rev(matlab.like(16)))</code></pre>
             <p>We could continue like that till the last dimension
             (11th), but it was for the explanation. So now we can
             compute directly <span
             class="math inline"><em>Δ</em><em>G</em></span> by adding
-            all the 10 dimension</p>
+            dimension from 2 to 11 (or subtraction of the first dim
+            which is exactly the same)</p>
             <pre class="{r}"><code>delta_G = matrix(0, nrow =11, ncol =11)
 for(dim in 2:11){
   delta_G = delta_G + spectra$vectors[,dim]%*%t(spectra$vectors[,dim])*exp(spectra$values[dim])
@@ -414,39 +459,61 @@ levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions =
             </figure>
             <figure>
             <img src="figures/host_host_cluster.jpg" id="fig:host"
-            alt="Figure 2: Figure 2" />
-            <figcaption aria-hidden="true">Figure 2: Figure
-            2</figcaption>
+            alt="Figure 2: Figure 2 : Host-Host cluster matrix" />
+            <figcaption aria-hidden="true">Figure 2: Figure 2 :
+            Host-Host cluster matrix</figcaption>
             </figure>
             <figure>
             <img src="figures/host_host_recap.jpg" id="fig:host_recap"
-            alt="Figure 3: Figure 3" />
-            <figcaption aria-hidden="true">Figure 3: Figure
-            3</figcaption>
+            alt="Figure 3: Figure 3 : Host Host recap (with median of clustering value for each order)" />
+            <figcaption aria-hidden="true">Figure 3: Figure 3 : Host
+            Host recap (with median of clustering value for each
+            order)</figcaption>
             </figure>
             <figure>
             <img src="figures/virus_virus_cluster.jpg" id="fig:virus"
-            alt="Figure 4: Figure 4" />
-            <figcaption aria-hidden="true">Figure 4: Figure
-            4</figcaption>
+            alt="Figure 4: Figure 4 : Virus-Virus cluster matrix" />
+            <figcaption aria-hidden="true">Figure 4: Figure 4 :
+            Virus-Virus cluster matrix</figcaption>
             </figure>
             <figure>
             <img src="figures/virus_virus_recap.jpg"
-            id="fig:virus_recap" alt="Figure 5: Figure 5" />
-            <figcaption aria-hidden="true">Figure 5: Figure
-            5</figcaption>
+            id="fig:virus_recap"
+            alt="Figure 5: Figure 5 : Virus-Virus recap (with median of cluster value for each order)" />
+            <figcaption aria-hidden="true">Figure 5: Figure 5 :
+            Virus-Virus recap (with median of cluster value for each
+            order)</figcaption>
             </figure>
             <figure>
             <img src="figures/host_virus.jpg" id="fig:host_virus"
-            alt="Figure 6: Figure 4" />
-            <figcaption aria-hidden="true">Figure 6: Figure
-            4</figcaption>
+            alt="Figure 6: Figure 6 : Host-Virus cluster matrix" />
+            <figcaption aria-hidden="true">Figure 6: Figure 6 :
+            Host-Virus cluster matrix</figcaption>
             </figure>
             <figure>
             <img src="figures/host_virus_recap.jpg"
-            id="fig:host_virus_recap" alt="Figure 7: Figure 5" />
-            <figcaption aria-hidden="true">Figure 7: Figure
-            5</figcaption>
+            id="fig:host_virus_recap"
+            alt="Figure 7: Figure 7 : Host-Virus recap (with median of cluster value for each order)" />
+            <figcaption aria-hidden="true">Figure 7: Figure 7 :
+            Host-Virus recap (with median of cluster value for each
+            order)</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/host_virus__rand_cluster.jpg"
+            id="fig:host_virus__rand_cluster"
+            alt="Figure 8: Figure 8 : Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as fig. 1" />
+            <figcaption aria-hidden="true">Figure 8: Figure 8 : Global
+            matrix of clustering communicability, with random edges
+            connection. Number of edges for each nodes (Host and virus)
+            is concerved. X and Y are ordered the same way as
+            fig. 1</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/sharing_vs_clustering.jpg"
+            id="fig:sharing_vs_clustering"
+            alt="Figure 9: Figure 9 : comparison with Albery sharing metric." />
+            <figcaption aria-hidden="true">Figure 9: Figure 9 :
+            comparison with Albery sharing metric.</figcaption>
             </figure>
             <h2 class="unnumbered" id="conclusion">Conclusion</h2>
             <div id="refs"
