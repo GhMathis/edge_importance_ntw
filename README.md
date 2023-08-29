@@ -8,9 +8,15 @@ output:
 
 ## Introduction
 
+1.  Global health needs more ecology in viral forecasting
+
+    Predicting viral spillover for future pandemic prevention + importance of ecology in the context of global health [@Belay2017Zoonotic; @Carroll2018Global] [@Plowright2017Pathways]. Works have been done to predict viral hotspot according to climate change [@Carlson2022Climate], future host distribution [@Morales-Castilla2021Forecasting] and potential viral sharing among host [@Albery2020Predicting]. Bring information on potential spillover path.
+
+2.  Communicability already used in other field and context to estimate spread.
+
 ## Methods
 
-Communicability quantify how well information transit between two nodes by considering all possible path in a network and penalizing longer ones. It is compute with the exponent of the adjacency matrix of the network.$$G=\sum_{k=0}^{\infty} \frac{\left(\mathbf{A}^k\right)}{k !}=e^{\mathbf{A}}$$
+Communicability quantify how well information transit between two nodes by considering all possible path in a network and penalizing longer ones. It is compute with the exponent of the adjacency matrix of the network. $$G=\sum_{k=0}^{\infty} \frac{\left(\mathbf{A}^k\right)}{k !}=e^{\mathbf{A}}$$
 
 where $G$ is the communicability matrix, $A$ the adjacency matrix and k is used as a penalizing term. It is possible to compute the exponential of a matrix with the graph spectrum :
 
@@ -36,7 +42,6 @@ G=\varphi_1\varphi_1^{T} e^{\lambda_1}+
 $${#eq:cluster1}
 
 \
-\
 
 where $\varphi_j^+$ or $\varphi_j^-$ indicate respectively all the positives or negatives values of the $j^{th}$ eigenvector. A way to think about it would be that when $\varphi_j^+$ all negative values are set to 0 and when when $\varphi_j^-$ all positive values are set to 0. @Estrada2008Communicability explain that "two nodes have the same sign in an eigenvector if they can be considered as being in the same partition of the network, while those pairs having different signs correspond to nodes in different partitions.". $$\sum^{intracluster}_{j=2}\varphi_j\varphi_j^{T} e^{\lambda_j} = \sum^n_{j=2}\varphi_j^{+}\varphi_j^{+T} e^{\lambda_j}+ \sum^n_{j=2}\varphi_j^{-}\varphi_j^{-T} e^{\lambda_j}$$
 
@@ -58,9 +63,15 @@ G - \varphi_{1} \varphi_{1}^T e^{\lambda_1}$$
 
 which was the form in which we introduce it.
 
-##### Remark
+##### Remark 1
 
-Each dimension of the spectra form the 2nd to the last one is a clustering configuration of the network. Cluster identified by dim 3 are not necessarily independent form those in dim 2 or 4 (or all others). Althoug the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and so on till the last one. So the dim 2 is the one that contibute the most for $\Delta G$ (we can see it in the following exemple). \#### Example
+Each dimension of the spectra form the 2nd to the last one is a clustering configuration of the network. Cluster identified by dim 3 are not necessarily independent form those in dim 2 or 4 (or all others). Although the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and so on till the last one. So the dim 2 is the one that contribute the most for $\Delta G$ (we can see it in the following example).
+
+##### Remark 2
+
+In a graph nodes can be consider as diffuser or receiver. The communicability matrix can be use to quantify the capacity of nodes to communicate when they act like a diffuser a receiver. For example host-host or virus-virus parts of $G$ give information on the capacity of respectively host or virus to communicate when they are playing the same role in he network. see @Benzi2020Matrix for better explaination
+
+#### Example
 
 ```{r}
 library(tidyverse)
