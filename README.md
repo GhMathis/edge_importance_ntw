@@ -10,9 +10,17 @@ output:
 
 1.  Global health needs more ecology in viral forecasting
 
-    Predicting viral spillover for future pandemic prevention + importance of ecology in the context of global health [@Belay2017Zoonotic; @Carroll2018Global] [@Plowright2017Pathways]. Works have been done to predict viral hotspot according to climate change [@Carlson2022Climate], future host distribution [@Morales-Castilla2021Forecasting] and potential viral sharing among host [@Albery2020Predicting]. Bring information on potential spillover path.
+    Predicting viral spillover for future pandemic prevention + importance of ecology in the context of global health [@Belay2017Zoonotic; @Carroll2018Global] [@Plowright2017Pathways]. Works have been done to predict viral hotspot according to climate change [@Carlson2022Climate], future host distribution [@Morales-Castilla2021Forecasting] and potential viral sharing among host [@Albery2020Predicting]. Bring informations on potential spillover path. @Albery2020Predicting viral sharing is based on phylogenetic and geographic overlap, they show that phylogenetic similarity is much more decisive on viral sharing than geographical overlapping. Knowing that species migration is at is highest, there is a need to develop models that predict potential viral sharing of species even if they don't overlap. Using phylogenetic seams to be conclusive. We want to bring an other approach that use global structure Metaweb. A metaweb is a network that resume potential interactions... Metawebs contains precious ecological information @Morales-Castilla2015Inferrina
 
-2.  Communicability already used in other field and context to estimate spread.
+    @Poisot2023Network have develop a link prediction method for host virus metaweb. Showing that unrealised or non discover associations can be infer using a network dimension reduction method. Enable a better prediction of viral infection on human. This imputed metawab has no geographical constrain. A question can arise, can we use the imputed metaweb structure to make prediction of most likely viral spillover ? and top viral sharing species with human (or any other) ? (*I'm not sure what can communicability add to the embedding, because embedding already take into account the global structure of the network. A prediction of link isn't enough ? Plus, the embedding already give a probability of observing an association. I still need to think about it.*)
+
+    We want to propose an approach that take the big picture as input (the network as a hole) and provide information at the lower level (the link). For this we used a matrix function introduce by @Estrada2008Communicability
+
+2.  Communicability is really flexible, as shown in @Benzi2020Matrix it already has application in multiple subject such as neurology, cancer detection, economic... and is used for community detection, spread of information/contagion. This function barely (or not) used on ecological network.
+
+3.  Using communicability we try to extract informations on predicted network. We are exploring the community detection method to extract group of host with similar viral sharing, group of virus with similar host sharing and group of host-virus couples
+
+    By using global structure of a network it is possible with to deduce small scale properties such as viral sharing potential between to species, importance of species or importance of association in the network.
 
 ## Methods
 
