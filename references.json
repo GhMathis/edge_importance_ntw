@@ -1799,14 +1799,14 @@
                 ]
             ]
         },
-        "container-title": "Chaos (Woodbury, N.Y.)",
+        "container-title": "Chaos: An Interdisciplinary Journal of Nonlinear Science",
         "author": [
             {
                 "family": "Estrada",
                 "given": "Ernesto"
             }
         ],
-        "id": "Estrada2011Community",
+        "id": "Estrada2011Communityb",
         "DOI": "10.1063/1.3552144",
         "volume": "21",
         "page": "016103",
@@ -3503,6 +3503,42 @@
         "type": "article-journal"
     },
     {
+        "issue": "Suppl 1",
+        "PMCID": "PMC5711306",
+        "issued": {
+            "date-parts": [
+                [
+                    2017
+                ]
+            ]
+        },
+        "container-title": "Emerging Infectious Diseases",
+        "author": [
+            {
+                "family": "Salyer",
+                "given": "Stephanie J."
+            },
+            {
+                "family": "Silver",
+                "given": "Rachel"
+            },
+            {
+                "family": "Simone",
+                "given": "Kerri"
+            },
+            {
+                "family": "Barton Behravesh",
+                "given": "Casey"
+            }
+        ],
+        "id": "Salyer2017Prioritizing",
+        "DOI": "10.3201/eid2313.170418",
+        "volume": "23",
+        "page": "S55-S64",
+        "title": "Prioritizing Zoonoses for Global Health Capacity Building from One Health Zoonotic Disease Workshops in 7 Countries, 2014",
+        "type": "article-journal"
+    },
+    {
         "publisher": "Nature Publishing Group",
         "issued": {
             "date-parts": [
@@ -3975,6 +4011,36 @@
         "type": "article-journal"
     },
     {
+        "issued": {
+            "date-parts": [
+                [
+                    2022
+                ]
+            ]
+        },
+        "container-title": "Ecological Modelling",
+        "author": [
+            {
+                "family": "Voinson",
+                "given": "Marina"
+            },
+            {
+                "family": "Smadi",
+                "given": "Charline"
+            },
+            {
+                "family": "Billiard",
+                "given": "Sylvain"
+            }
+        ],
+        "id": "Voinson2022How",
+        "DOI": "10.1016/j.ecolmodel.2022.110092",
+        "volume": "472",
+        "page": "110092",
+        "title": "How does the host community structure affect the epidemiological dynamics of emerging infectious diseases?",
+        "type": "article-journal"
+    },
+    {
         "publisher": "Nature Publishing Group",
         "issue": "1",
         "issued": {
@@ -4009,6 +4075,52 @@
         "page": "3954",
         "title": "Divide-and-conquer: Machine-learning integrates mammalian and viral traits with network features to predict virus-mammal associations",
         "type": "article-journal"
+    },
+    {
+        "publisher": "Princeton University Press",
+        "issued": {
+            "date-parts": [
+                [
+                    2015
+                ]
+            ]
+        },
+        "container-title": "Quantitative Viral Ecology",
+        "author": [
+            {
+                "family": "Weitz",
+                "given": "Joshua S."
+            }
+        ],
+        "id": "Weitz2015Evolutionary",
+        "collection-title": "Dynamics of Viruses and Their Microbial Hosts",
+        "URL": "https://www.jstor.org/stable/j.ctt1dr36hx.8",
+        "page": "89-124",
+        "title": "Evolutionary Dynamics of Viruses or Microbes, but Not Both",
+        "type": "chapter"
+    },
+    {
+        "publisher": "Princeton University Press",
+        "issued": {
+            "date-parts": [
+                [
+                    2015
+                ]
+            ]
+        },
+        "container-title": "Quantitative Viral Ecology",
+        "author": [
+            {
+                "family": "Weitz",
+                "given": "Joshua S."
+            }
+        ],
+        "id": "Weitz2015Future",
+        "collection-title": "Dynamics of Viruses and Their Microbial Hosts",
+        "URL": "https://www.jstor.org/stable/j.ctt1dr36hx.12",
+        "page": "236-244",
+        "title": "The Future of Quantitative Viral Ecology",
+        "type": "chapter"
     },
     {
         "issue": "4",
@@ -4111,6 +4223,44 @@
         "volume": "5",
         "page": "45-69",
         "title": "Inferring structure in bipartite networks using the latent blockmodel and exact ICL",
+        "type": "article-journal"
+    },
+    {
+        "issue": "6",
+        "issued": {
+            "date-parts": [
+                [
+                    2015,
+                    6,
+                    1
+                ]
+            ]
+        },
+        "container-title": "Trends in Ecology & Evolution",
+        "author": [
+            {
+                "family": "Morales-Castilla",
+                "given": "Ignacio"
+            },
+            {
+                "family": "Matias",
+                "given": "Miguel G."
+            },
+            {
+                "family": "Gravel",
+                "given": "Dominique"
+            },
+            {
+                "family": "Araújo",
+                "given": "Miguel B."
+            }
+        ],
+        "id": "Morales-Castilla2015Inferring",
+        "DOI": "10.1016/j.tree.2015.03.014",
+        "volume": "30",
+        "URL": "https://www.sciencedirect.com/science/article/pii/S0169534715000774",
+        "page": "347-356",
+        "title": "Inferring biotic interactions from proxies",
         "type": "article-journal"
     }
 ]

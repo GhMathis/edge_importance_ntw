@@ -1,11 +1,66 @@
 ## Introduction
 
+1.  Global health needs more ecology in viral forecasting
+
+    Predicting viral spillover for future pandemic prevention +
+    importance of ecology in the context of global health
+    [@Belay2017Zoonotic; @Carroll2018Global] [@Plowright2017Pathways].
+    Works have been done to predict viral hotspot according to climate
+    change [@Carlson2022Climate], future host distribution
+    [@Morales-Castilla2021Forecasting] and potential viral sharing among
+    host [@Albery2020Predicting]. Bring informations on potential
+    spillover path. @Albery2020Predicting viral sharing is based on
+    phylogenetic and geographic overlap, they show that phylogenetic
+    similarity is much more decisive on viral sharing than geographical
+    overlapping. Knowing that species migration is at is highest, there
+    is a need to develop models that predict potential viral sharing of
+    species even if they don't overlap. Using phylogenetic seams to be
+    conclusive. We want to bring an other approach that use global
+    structure Metaweb. A metaweb is a network that resume potential
+    interactions... Metawebs contains precious ecological information
+    @Morales-Castilla2015Inferrina
+
+    @Poisot2023Network have develop a link prediction method for host
+    virus metaweb. Showing that unrealised or non discover associations
+    can be infer using a network dimension reduction method. Enable a
+    better prediction of viral infection on human. This imputed metawab
+    has no geographical constrain. A question can arise, can we use the
+    imputed metaweb structure to make prediction of most likely viral
+    spillover ? and top viral sharing species with human (or any other)
+    ? (*I'm not sure what can communicability add to the embedding,
+    because embedding already take into account the global structure of
+    the network. A prediction of link isn't enough ? Plus, the embedding
+    already give a probability of observing an association. I still need
+    to think about it.*)
+
+    We want to propose an approach that take the big picture as input
+    (the network as a hole) and provide information at the lower level
+    (the link). For this we used a matrix function introduce by
+    @Estrada2008Communicability
+
+2.  Communicability is really flexible, as shown in @Benzi2020Matrix it
+    already has application in multiple subject such as neurology,
+    cancer detection, economic... and is used for community detection,
+    spread of information/contagion. This function barely (or not) used
+    on ecological network.
+
+3.  Using communicability we try to extract informations on predicted
+    network. We are exploring the community detection method to extract
+    group of host with similar viral sharing, group of virus with
+    similar host sharing and group of host-virus couples
+
+    By using global structure of a network it is possible with to deduce
+    small scale properties such as viral sharing potential between to
+    species, importance of species or importance of association in the
+    network.
+
 ## Methods
 
 Communicability quantify how well information transit between two nodes
 by considering all possible path in a network and penalizing longer
 ones. It is compute with the exponent of the adjacency matrix of the
-network.$$G=\sum_{k=0}^{\infty} \frac{\left(\mathbf{A}^k\right)}{k !}=e^{\mathbf{A}}$$
+network.
+$$G=\sum_{k=0}^{\infty} \frac{\left(\mathbf{A}^k\right)}{k !}=e^{\mathbf{A}}$$
 
 where $G$ is the communicability matrix, $A$ the adjacency matrix and k
 is used as a penalizing term. It is possible to compute the exponential
@@ -39,7 +94,6 @@ G=\varphi_1\varphi_1^{T} e^{\lambda_1}+
 \sum^n_{j=2}\varphi_j^{-}\varphi_j^{+T} e^{\lambda_j}
 \qquad{(1)}$$]{#eq:cluster1}
 
-\
 \
 
 where $\varphi_j^+$ or $\varphi_j^-$ indicate respectively all the
@@ -77,14 +131,25 @@ G - \varphi_{1} \varphi_{1}^T e^{\lambda_1}$$
 
 which was the form in which we introduce it.
 
-##### Remark
+##### Remark 1
 
 Each dimension of the spectra form the 2nd to the last one is a
 clustering configuration of the network. Cluster identified by dim 3 are
 not necessarily independent form those in dim 2 or 4 (or all others).
-Althoug the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and so
-on till the last one. So the dim 2 is the one that contibute the most
-for $\Delta G$ (we can see it in the following exemple). \#### Example
+Although the cluster form by dim 2 are "stronger" then 3, 4, 5 ... and
+so on till the last one. So the dim 2 is the one that contribute the
+most for $\Delta G$ (we can see it in the following example).
+
+##### Remark 2
+
+In a graph nodes can be consider as diffuser or receiver. The
+communicability matrix can be use to quantify the capacity of nodes to
+communicate when they act like a diffuser a receiver. For example
+host-host or virus-virus parts of $G$ give information on the capacity
+of respectively host or virus to communicate when they are playing the
+same role in he network. see @Benzi2020Matrix for better explaination
+
+#### Example
 
 ``` {r}
 library(tidyverse)
