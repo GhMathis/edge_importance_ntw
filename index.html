@@ -307,10 +307,101 @@ global srtucure of host-virus meta-network</div>
             2021</a>)</span> and potential viral sharing among host
             <span class="citation" data-cites="Albery2020Predicting">(<a
             href="#ref-Albery2020Predicting" role="doc-biblioref">Albery
-            <em>et al.</em> 2020</a>)</span>. Bring information on
-            potential spillover path.</p></li>
-            <li><p>Communicability already used in other field and
-            context to estimate spread.</p></li>
+            <em>et al.</em> 2020</a>)</span>. Bring informations on
+            potential spillover path. <span class="citation"
+            data-cites="Albery2020Predicting">Albery <em>et al.</em> (<a
+            href="#ref-Albery2020Predicting"
+            role="doc-biblioref">2020</a>)</span> viral sharing is based
+            on phylogenetic and geographic overlap, they show that
+            phylogenetic similarity is much more decisive on viral
+            sharing than geographical overlapping. Knowing that species
+            migration is at is highest, there is a need to develop
+            models that predict potential viral sharing of species even
+            if they don’t overlap. Using phylogenetic seams to be
+            conclusive. We want to bring an other approach that use
+            global structure Metaweb. A metaweb is a network that resume
+            potential interactions… Metawebs contains precious
+            ecological information <span class="citation"
+            data-cites="Morales-Castilla2015Inferrina">(<a
+            href="#ref-Morales-Castilla2015Inferrina"
+            role="doc-biblioref"><strong>Morales-Castilla2015Inferrina?</strong></a>)</span></p>
+            <p><span class="citation"
+            data-cites="Poisot2023Network">Poisot <em>et al.</em> (<a
+            href="#ref-Poisot2023Network"
+            role="doc-biblioref">2023</a>)</span> have develop a link
+            prediction method for host virus metaweb. Showing that
+            unrealised or non discover associations can be infer using a
+            network dimension reduction method. Enable a better
+            prediction of viral infection on human. This imputed metawab
+            has no geographical constrain. A question can arise, can we
+            use the imputed metaweb structure to make prediction of most
+            likely viral spillover ? and top viral sharing species with
+            human (or any other) ? (<em>I’m not sure what can
+            communicability add to the embedding, because embedding
+            already take into account the global structure of the
+            network. A prediction of link isn’t enough ? Plus, the
+            embedding already give a probability of observing an
+            association. I still need to think about it.</em>)</p>
+            <p>We want to propose an approach that take the big picture
+            as input (the network as a hole) and provide information at
+            the lower level (the link). For this we used a matrix
+            function introduce by <span class="citation"
+            data-cites="Estrada2008Communicability">Estrada &amp; Hatano
+            (<a href="#ref-Estrada2008Communicability"
+            role="doc-biblioref">2008</a>)</span></p></li>
+            <li><p>Communicability is really flexible, as shown in <span
+            class="citation" data-cites="Benzi2020Matrix">Benzi &amp;
+            Boito (<a href="#ref-Benzi2020Matrix"
+            role="doc-biblioref">2020</a>)</span> it already has
+            application in multiple subject such as neurology, cancer
+            detection, economic… and is used for community detection,
+            spread of information/contagion. This matrix function barely
+            (or not) used on ecological network.</p></li>
+            <li><p>Using communicability we try to extract informations
+            on metaweb with predicted association. We are exploring the
+            community detection method to extract group of host with
+            similar viral sharing, group of virus with similar host
+            sharing.</p>
+            <p>By using global structure of a network it is possible
+            with to deduce small scale properties such as viral sharing
+            potential between to species, importance of species or
+            importance of association in the network.</p></li>
+            <li><p>Explaining why we think that communicability is a
+            proxy for viral sharing. Host host part of <span
+            class="math inline"><em>A</em><sup>2</sup></span> is known
+            to be direct viral sharing, aka the exact number of virus
+            share between 2 host (same apply for virus-virus, the the
+            number of host share between two). Host host part of <span
+            class="math inline"><em>A</em><sup>4</sup></span> is the
+            nubmer of virus share between the 2 host plus the number of
+            virus share with any other intermediary host, etc… .
+            Communicability quantify this but add a penalization each
+            time we add intermediary. This penalization enable to
+            simulate the “difficulty” for a virus to transit from one
+            host to an other if they are “far away” in the
+            network.</p></li>
+            <li><p>Communicability (G) is a quantification closely
+            related to total sharing viral diversity ( $A^2$ ). G will
+            be strong when one or both host have a high viral diversity.
+            It can be simply explain by the fact that a hight diversity
+            mean in general more path to connect both nodes, so the
+            communicability between those is better. The clustering
+            ($\Delta G$, or viral spectrum similarity) is not exactly
+            the same. It will not by highly positive when both have a
+            hight viral diversity or highly negative when both have a
+            low viral diversity. No! it will depend on the similarity of
+            both node, the quantity is not taken in consideration. For
+            example, lets suppose that one part of a pair have a hight
+            viral diversity and the other less, also that the hight
+            viral diverse one have most virus of the second one. G will
+            be srtong between the two host because of the one highly
+            connected. But if we look at the clustering, the highly
+            connected host is considered as a “generalist host”, it
+            share virus with a lot of other host. Even if the less
+            connected one does share almost all of is virus with the
+            other the “virus spectrum” of both host is completely
+            different, so the clustering between those two will be
+            weak.</p></li>
             </ol>
             <h2 id="methods">Methods</h2>
             <p>Communicability quantify how well information transit
@@ -494,78 +585,89 @@ levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions =
             <h2 id="results">Results</h2>
             <figure>
             <img src="figures/host_virus_cluster.jpg" id="fig:global"
-            alt="Figure 1: Figure 1 : Global matrix of clustering communicability. Positive values indicate species in same cluster, negative value species in “opposite” cluster. Only host order and virus order names are display on x and y." />
-            <figcaption aria-hidden="true">Figure 1: Figure 1 : Global
-            matrix of clustering communicability. Positive values
-            indicate species in same cluster, negative value species in
-            “opposite” cluster. Only host order and virus order names
-            are display on x and y.</figcaption>
-            </figure>
-            <figure>
-            <img src="figures/host_host_cluster.jpg" id="fig:host"
-            alt="Figure 2: Figure 2 : Host-Host cluster matrix" />
-            <figcaption aria-hidden="true">Figure 2: Figure 2 :
-            Host-Host cluster matrix</figcaption>
-            </figure>
-            <figure>
-            <img src="figures/host_host_recap.jpg" id="fig:host_recap"
-            alt="Figure 3: Figure 3 : Host Host recap (with median of clustering value for each order)" />
-            <figcaption aria-hidden="true">Figure 3: Figure 3 : Host
-            Host recap (with median of clustering value for each
-            order)</figcaption>
-            </figure>
-            <figure>
-            <img src="figures/virus_virus_cluster.jpg" id="fig:virus"
-            alt="Figure 4: Figure 4 : Virus-Virus cluster matrix" />
-            <figcaption aria-hidden="true">Figure 4: Figure 4 :
-            Virus-Virus cluster matrix</figcaption>
-            </figure>
-            <figure>
-            <img src="figures/virus_virus_recap.jpg"
-            id="fig:virus_recap"
-            alt="Figure 5: Figure 5 : Virus-Virus recap (with median of cluster value for each order)" />
-            <figcaption aria-hidden="true">Figure 5: Figure 5 :
-            Virus-Virus recap (with median of cluster value for each
-            order)</figcaption>
-            </figure>
-            <figure>
-            <img src="figures/host_virus.jpg" id="fig:host_virus"
-            alt="Figure 6: Figure 6 : Host-Virus cluster matrix" />
-            <figcaption aria-hidden="true">Figure 6: Figure 6 :
-            Host-Virus cluster matrix</figcaption>
-            </figure>
-            <figure>
-            <img src="figures/host_virus_recap.jpg"
-            id="fig:host_virus_recap"
-            alt="Figure 7: Figure 7 : Host-Virus recap (with median of cluster value for each order)" />
-            <figcaption aria-hidden="true">Figure 7: Figure 7 :
-            Host-Virus recap (with median of cluster value for each
-            order)</figcaption>
+            alt="Figure 1: Global matrix of clustering communicability. Positive values indicate species in same cluster, negative value species in “opposite” cluster. Only host order and virus order names are display on x and y." />
+            <figcaption aria-hidden="true">Figure 1: Global matrix of
+            clustering communicability. Positive values indicate species
+            in same cluster, negative value species in “opposite”
+            cluster. Only host order and virus order names are display
+            on x and y.</figcaption>
             </figure>
             <figure>
             <img src="figures/host_virus__rand_cluster.jpg"
             id="fig:host_virus__rand_cluster"
-            alt="Figure 8: Figure 8 : Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as fig. 1" />
-            <figcaption aria-hidden="true">Figure 8: Figure 8 : Global
-            matrix of clustering communicability, with random edges
-            connection. Number of edges for each nodes (Host and virus)
-            is concerved. X and Y are ordered the same way as
+            alt="Figure 2: Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as fig. 1" />
+            <figcaption aria-hidden="true">Figure 2: Global matrix of
+            clustering communicability, with random edges connection.
+            Number of edges for each nodes (Host and virus) is
+            concerved. X and Y are ordered the same way as
             fig. 1</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/H_spaiens_viral_simi_x_phylo_dist.png"
+            id="fig:H_spaiens_viral_simi"
+            alt="Figure 3: Phylogenetic distance explain sharing similarity of Homo sapiens (with almost all trefle host)" />
+            <figcaption aria-hidden="true">Figure 3: Phylogenetic
+            distance explain sharing similarity of Homo sapiens (with
+            almost all trefle host)</figcaption>
+            </figure>
+            <h2 id="conclusion">Conclusion</h2>
+            <h2 id="usefull-fig">Usefull fig</h2>
+            <figure>
+            <img src="figures/host_host_cluster.jpg" id="fig:host"
+            alt="Figure 4: Host-Host cluster matrix, can be consider as viral sharing similarity for host pairs" />
+            <figcaption aria-hidden="true">Figure 4: Host-Host cluster
+            matrix, can be consider as viral sharing similarity for host
+            pairs</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/host_host_recap.jpg" id="fig:host_recap"
+            alt="Figure 5: Host-Host recap (with median of clustering value for each order)" />
+            <figcaption aria-hidden="true">Figure 5: Host-Host recap
+            (with median of clustering value for each
+            order)</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/virus_virus_cluster.jpg" id="fig:virus"
+            alt="Figure 6: Virus-Virus cluster matrix, can be consider as host sharing similarity for virus pairs" />
+            <figcaption aria-hidden="true">Figure 6: Virus-Virus cluster
+            matrix, can be consider as host sharing similarity for virus
+            pairs</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/virus_virus_recap.jpg"
+            id="fig:virus_recap"
+            alt="Figure 7: Virus-Virus recap (with median of cluster value for each order)" />
+            <figcaption aria-hidden="true">Figure 7: Virus-Virus recap
+            (with median of cluster value for each order)</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/host_virus.jpg" id="fig:host_virus"
+            alt="Figure 8: Host-Virus cluster matrix, can be seen as a quantification of the expect association occurrence for host-virus couples according to the global struct of the network" />
+            <figcaption aria-hidden="true">Figure 8: Host-Virus cluster
+            matrix, can be seen as a quantification of the expect
+            association occurrence for host-virus couples according to
+            the global struct of the network</figcaption>
+            </figure>
+            <figure>
+            <img src="figures/host_virus_recap.jpg"
+            id="fig:host_virus_recap"
+            alt="Figure 9: Host-Virus recap (with median of cluster value for each order)" />
+            <figcaption aria-hidden="true">Figure 9: Host-Virus recap
+            (with median of cluster value for each order)</figcaption>
             </figure>
             <figure>
             <img src="figures/sharing_vs_clustering.jpg"
             id="fig:sharing_vs_clustering"
-            alt="Figure 9: Figure 9 : comparison with Albery sharing metric." />
-            <figcaption aria-hidden="true">Figure 9: Figure 9 :
-            comparison with Albery sharing metric.</figcaption>
+            alt="Figure 10: comparison with Albery sharing metric." />
+            <figcaption aria-hidden="true">Figure 10: comparison with
+            Albery sharing metric.</figcaption>
             </figure>
             <figure>
             <img src="figures/sharing_vs_clustering_rand.jpg"
-            alt="Figure 10 : comparison with Albery sharing metric for a random network" />
-            <figcaption aria-hidden="true">Figure 10 : comparison with
-            Albery sharing metric for a random network</figcaption>
+            alt="comparison with Albery sharing metric for a random network" />
+            <figcaption aria-hidden="true">comparison with Albery
+            sharing metric for a random network</figcaption>
             </figure>
-            <h2 class="unnumbered" id="conclusion">Conclusion</h2>
             <div id="refs"
             class="references csl-bib-body hanging-indent"
             role="doc-bibliography">
@@ -632,6 +734,14 @@ levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions =
             href="https://doi.org/10.1038/nrmicro.2017.45">Pathways to
             zoonotic spillover</a>. <em>Nature Reviews
             Microbiology</em>, 15, 502–510.
+            </div>
+            <div id="ref-Poisot2023Network" class="csl-entry"
+            role="doc-biblioentry">
+            Poisot, T., Ouellet, M.-A., Mollentze, N., Farrell, M.J.,
+            Becker, D.J., Brierley, L., <em>et al.</em> (2023). <a
+            href="https://doi.org/10.1016/j.patter.2023.100738">Network
+            embedding unveils the hidden interactions in the mammalian
+            virome</a>. <em>Patterns</em>, 100738.
             </div>
             </div>
         </article>
