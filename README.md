@@ -16,11 +16,15 @@ output:
 
     We want to propose an approach that take the big picture as input (the network as a hole) and provide information at the lower level (the link). For this we used a matrix function introduce by @Estrada2008Communicability
 
-2.  Communicability is really flexible, as shown in @Benzi2020Matrix it already has application in multiple subject such as neurology, cancer detection, economic... and is used for community detection, spread of information/contagion. This function barely (or not) used on ecological network.
+2.  Communicability is really flexible, as shown in @Benzi2020Matrix it already has application in multiple subject such as neurology, cancer detection, economic... and is used for community detection, spread of information/contagion. This matrix function barely (or not) used on ecological network.
 
-3.  Using communicability we try to extract informations on predicted network. We are exploring the community detection method to extract group of host with similar viral sharing, group of virus with similar host sharing and group of host-virus couples
+3.  Using communicability we try to extract informations on metaweb with predicted association. We are exploring the community detection method to extract group of host with similar viral sharing, group of virus with similar host sharing.
 
     By using global structure of a network it is possible with to deduce small scale properties such as viral sharing potential between to species, importance of species or importance of association in the network.
+
+4.  Explaining why we think that communicability is a proxy for viral sharing. Host host part of $A^2$ is known to be direct viral sharing, aka the exact number of virus share between 2 host (same apply for virus-virus, the the number of host share between two). Host host part of $A^4$ is the nubmer of virus share between the 2 host plus the number of virus share with any other intermediary host, etc... . Communicability quantify this but add a penalization each time we add intermediary. This penalization enable to simulate the "difficulty" for a virus to transit from one host to an other if they are "far away" in the network.
+
+5.  Communicability (G) is a quantification closely related to total sharing viral diversity ( \$A\^2\$ ). G will be strong when one or both host have a high viral diversity. It can be simply explain by the fact that a hight diversity mean in general more path to connect both nodes, so the communicability between those is better. The clustering (\$\\Delta G\$, or viral spectrum similarity) is not exactly the same. It will not by highly positive when both have a hight viral diversity or highly negative when both have a low viral diversity. No! it will depend on the similarity of both node, the quantity is not taken in consideration. For example, lets suppose that one part of a pair have a hight viral diversity and the other less, also that the hight viral diverse one have most virus of the second one. G will be srtong between the two host because of the one highly connected. But if we look at the clustering, the highly connected host is considered as a "generalist host", it share virus with a lot of other host. Even if the less connected one does share almost all of is virus with the other the "virus spectrum" of both host is completely different, so the clustering between those two will be weak.
 
 ## Methods
 
@@ -147,24 +151,28 @@ levelplot(delta_G, ylab = "node", xlab ="node",col.regions = rev(matlab.like(16)
 
 ## Results
 
-![Figure 1 : Global matrix of clustering communicability. Positive values indicate species in same cluster, negative value species in "opposite" cluster. Only host order and virus order names are display on x and y.](figures/host_virus_cluster.jpg){#fig:global}
+![Global matrix of clustering communicability. Positive values indicate species in same cluster, negative value species in "opposite" cluster. Only host order and virus order names are display on x and y.](figures/host_virus_cluster.jpg){#fig:global}
 
-![Figure 2 : Host-Host cluster matrix](figures/host_host_cluster.jpg){#fig:host}
+![Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as @fig:global](figures/host_virus__rand_cluster.jpg){#fig:host_virus__rand_cluster}
 
-![Figure 3 : Host Host recap (with median of clustering value for each order)](figures/host_host_recap.jpg){#fig:host_recap}
-
-![Figure 4 : Virus-Virus cluster matrix](figures/virus_virus_cluster.jpg){#fig:virus}
-
-![Figure 5 : Virus-Virus recap (with median of cluster value for each order)](figures/virus_virus_recap.jpg){#fig:virus_recap}
-
-![Figure 6 : Host-Virus cluster matrix](figures/host_virus.jpg){#fig:host_virus}
-
-![Figure 7 : Host-Virus recap (with median of cluster value for each order)](figures/host_virus_recap.jpg){#fig:host_virus_recap}
-
-![Figure 8 : Global matrix of clustering communicability, with random edges connection. Number of edges for each nodes (Host and virus) is concerved. X and Y are ordered the same way as fig. 1](figures/host_virus__rand_cluster.jpg){#fig:host_virus__rand_cluster}
-
-![Figure 9 : comparison with Albery sharing metric.](figures/sharing_vs_clustering.jpg){#fig:sharing_vs_clustering}
-
-![Figure 10 : comparison with Albery sharing metric for a random network](figures/sharing_vs_clustering_rand.jpg)
+![Phylogenetic distance explain sharing similarity of Homo sapiens (with almost all trefle host)](figures/H_spaiens_viral_simi_x_phylo_dist.png){#fig:H_spaiens_viral_simi}
 
 ## Conclusion
+
+## Usefull fig
+
+![Host-Host cluster matrix, can be consider as viral sharing similarity for host pairs](figures/host_host_cluster.jpg){#fig:host}
+
+![Host-Host recap (with median of clustering value for each order)](figures/host_host_recap.jpg){#fig:host_recap}
+
+![Virus-Virus cluster matrix, can be consider as host sharing similarity for virus pairs](figures/virus_virus_cluster.jpg){#fig:virus}
+
+![Virus-Virus recap (with median of cluster value for each order)](figures/virus_virus_recap.jpg){#fig:virus_recap}
+
+![Host-Virus cluster matrix, can be seen as a quantification of the expect association occurrence for host-virus couples according to the global struct of the network](figures/host_virus.jpg){#fig:host_virus}
+
+![Host-Virus recap (with median of cluster value for each order)](figures/host_virus_recap.jpg){#fig:host_virus_recap}
+
+![comparison with Albery sharing metric.](figures/sharing_vs_clustering.jpg){#fig:sharing_vs_clustering}
+
+![comparison with Albery sharing metric for a random network](figures/sharing_vs_clustering_rand.jpg)
