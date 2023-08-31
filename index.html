@@ -373,7 +373,7 @@ global srtucure of host-virus meta-network</div>
             share between 2 host (same apply for virus-virus, the the
             number of host share between two). Host host part of <span
             class="math inline"><em>A</em><sup>4</sup></span> is the
-            nubmer of virus share between the 2 host plus the number of
+            number of virus share between the 2 host plus the number of
             virus share with any other intermediary host, etc… .
             Communicability quantify this but add a penalization each
             time we add intermediary. This penalization enable to
@@ -394,14 +394,16 @@ global srtucure of host-virus meta-network</div>
             example, lets suppose that one part of a pair have a hight
             viral diversity and the other less, also that the hight
             viral diverse one have most virus of the second one. G will
-            be srtong between the two host because of the one highly
+            be strong between the two host because of the one highly
             connected. But if we look at the clustering, the highly
             connected host is considered as a “generalist host”, it
             share virus with a lot of other host. Even if the less
             connected one does share almost all of is virus with the
             other the “virus spectrum” of both host is completely
             different, so the clustering between those two will be
-            weak.</p></li>
+            weak.</p>
+            <p>Next: make an host host matrix with percentage of same
+            virus shared</p></li>
             </ol>
             <h2 id="methods">Methods</h2>
             <p>Communicability quantify how well information transit
@@ -610,40 +612,48 @@ levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions =
             distance explain sharing similarity of Homo sapiens (with
             almost all trefle host)</figcaption>
             </figure>
+            <figure>
+            <img src="figures/sharing_count_x_viral_similarity.png"
+            id="fig:sharing_count_x_viral_similarity"
+            alt="Figure 4: Viral sharing count between host isn’t always correlated with sharing similarity" />
+            <figcaption aria-hidden="true">Figure 4: Viral sharing count
+            between host isn’t always correlated with sharing
+            similarity</figcaption>
+            </figure>
             <h2 id="conclusion">Conclusion</h2>
             <h2 id="usefull-fig">Usefull fig</h2>
             <figure>
             <img src="figures/host_host_cluster.jpg" id="fig:host"
-            alt="Figure 4: Host-Host cluster matrix, can be consider as viral sharing similarity for host pairs" />
-            <figcaption aria-hidden="true">Figure 4: Host-Host cluster
+            alt="Figure 5: Host-Host cluster matrix, can be consider as viral sharing similarity for host pairs" />
+            <figcaption aria-hidden="true">Figure 5: Host-Host cluster
             matrix, can be consider as viral sharing similarity for host
             pairs</figcaption>
             </figure>
             <figure>
             <img src="figures/host_host_recap.jpg" id="fig:host_recap"
-            alt="Figure 5: Host-Host recap (with median of clustering value for each order)" />
-            <figcaption aria-hidden="true">Figure 5: Host-Host recap
+            alt="Figure 6: Host-Host recap (with median of clustering value for each order)" />
+            <figcaption aria-hidden="true">Figure 6: Host-Host recap
             (with median of clustering value for each
             order)</figcaption>
             </figure>
             <figure>
             <img src="figures/virus_virus_cluster.jpg" id="fig:virus"
-            alt="Figure 6: Virus-Virus cluster matrix, can be consider as host sharing similarity for virus pairs" />
-            <figcaption aria-hidden="true">Figure 6: Virus-Virus cluster
+            alt="Figure 7: Virus-Virus cluster matrix, can be consider as host sharing similarity for virus pairs" />
+            <figcaption aria-hidden="true">Figure 7: Virus-Virus cluster
             matrix, can be consider as host sharing similarity for virus
             pairs</figcaption>
             </figure>
             <figure>
             <img src="figures/virus_virus_recap.jpg"
             id="fig:virus_recap"
-            alt="Figure 7: Virus-Virus recap (with median of cluster value for each order)" />
-            <figcaption aria-hidden="true">Figure 7: Virus-Virus recap
+            alt="Figure 8: Virus-Virus recap (with median of cluster value for each order)" />
+            <figcaption aria-hidden="true">Figure 8: Virus-Virus recap
             (with median of cluster value for each order)</figcaption>
             </figure>
             <figure>
             <img src="figures/host_virus.jpg" id="fig:host_virus"
-            alt="Figure 8: Host-Virus cluster matrix, can be seen as a quantification of the expect association occurrence for host-virus couples according to the global struct of the network" />
-            <figcaption aria-hidden="true">Figure 8: Host-Virus cluster
+            alt="Figure 9: Host-Virus cluster matrix, can be seen as a quantification of the expect association occurrence for host-virus couples according to the global struct of the network" />
+            <figcaption aria-hidden="true">Figure 9: Host-Virus cluster
             matrix, can be seen as a quantification of the expect
             association occurrence for host-virus couples according to
             the global struct of the network</figcaption>
@@ -651,15 +661,15 @@ levelplot(delta_G, ylab = &quot;node&quot;, xlab =&quot;node&quot;,col.regions =
             <figure>
             <img src="figures/host_virus_recap.jpg"
             id="fig:host_virus_recap"
-            alt="Figure 9: Host-Virus recap (with median of cluster value for each order)" />
-            <figcaption aria-hidden="true">Figure 9: Host-Virus recap
+            alt="Figure 10: Host-Virus recap (with median of cluster value for each order)" />
+            <figcaption aria-hidden="true">Figure 10: Host-Virus recap
             (with median of cluster value for each order)</figcaption>
             </figure>
             <figure>
             <img src="figures/sharing_vs_clustering.jpg"
             id="fig:sharing_vs_clustering"
-            alt="Figure 10: comparison with Albery sharing metric." />
-            <figcaption aria-hidden="true">Figure 10: comparison with
+            alt="Figure 11: comparison with Albery sharing metric." />
+            <figcaption aria-hidden="true">Figure 11: comparison with
             Albery sharing metric.</figcaption>
             </figure>
             <figure>
